@@ -37,6 +37,8 @@ textarea{
 }
 
 .hour {
+  padding: 10px;
+  text-align: right;
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
@@ -58,6 +60,7 @@ textarea{
 }
 
 .saveBtn {
+  font-size: 1.5em;
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -66,6 +69,6 @@ textarea{
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
+  font-size: 1.8em;
   transition: all .3s ease-in-out;
 }

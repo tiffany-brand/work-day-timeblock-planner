@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     const currentDateEl = $("header #currentDay");
 
-    const today = moment().subtract(3, "hours"); // when testing, change this to different hours - after testing, remove the subtract
+    const today = moment().subtract(5, "hours"); // when testing, change this to different hours - after testing, remove the subtract
 
     let calEvents = {};
     // let calEvents = {
@@ -19,7 +19,7 @@ $(document).ready(function () {
     //     "5PM": ""
     // }
 
-    console.log(calEvents[9])
+
 
     // initialize calendar
     function initCalendar() {
@@ -38,7 +38,7 @@ $(document).ready(function () {
         const calendar = $("div.container");
         // loop to make blocks for hours 9 to 5
         for (let i = 1; i < 10; i++) {
-            const row = $("<div>").addClass("row").attr("id", date.format("hA"));
+            const row = $("<div>").addClass("row");
             let classOfHour = "";
             // console.log(date.isBefore(today, "hour"))
             // console.log(date.isSame(today, "hour"))
@@ -62,7 +62,7 @@ $(document).ready(function () {
 
             row.append($("<textarea>").addClass(`col-sm-8 ${classOfHour}`).text(calEvents[timeBlock]));
 
-            row.append($("<button>").addClass("col-sm-2 saveBtn").text("Save"));
+            row.append($("<button>").addClass("col-sm-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", date.format("hA")));
             date.add(1, "hour");
         }
     }
@@ -82,12 +82,15 @@ $(document).ready(function () {
 
     // save calendar event
     $("button.saveBtn").on("click", function (event) {
-        console.log(event.target.parentElement.id);
-        let calDesc = event.target.parentElement.children[1].value;
+        console.log(event.currentTarget)
+        console.log(event.currentTarget.id);
+        let calDesc = event.currentTarget.parentElement.children[1].value;
         console.log(calDesc);
-        calEvents[event.target.parentElement.id] = calDesc;
+        calEvents[event.currentTarget.id] = calDesc;
         console.log(calEvents);
         storeCal();
+
+
     })
 
 
