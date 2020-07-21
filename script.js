@@ -46,9 +46,9 @@ $(document).ready(function () {
             // console.log("date hour:" + date.hour())
             // console.log("today hour:" + today.hour())
             if (today.isBefore(date, "hour")) {
-                classOfHour = "past"
-            } else if (today.isAfter(date, "hour")) {
                 classOfHour = "future"
+            } else if (today.isAfter(date, "hour")) {
+                classOfHour = "past"
             } else {
                 classOfHour = "present"
             }
