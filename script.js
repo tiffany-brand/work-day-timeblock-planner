@@ -4,7 +4,7 @@ $(document).ready(function () {
     const currentDateEl = $("header #currentDay");
 
     // set today's date
-    const today = moment().subtract(4, "hours"); // when testing, change this to different hours - after testing, remove the subtract
+    const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
 
     // declare object to store calendar events
     let calEvents = {};
