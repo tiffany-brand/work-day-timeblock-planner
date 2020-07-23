@@ -2,6 +2,9 @@ $(document).ready(function () {
 
     // Selector to display today's date
     const currentDateEl = $("header #currentDay");
+    const hourDivEl = $("div.hour-div");
+    const eventDivEl = $("div.event-div");
+    const saveDivEl = $("div.save-div");
 
     // set today's date
     const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
@@ -29,12 +32,12 @@ $(document).ready(function () {
 
             calendar.append(row);
             // hour column
-            row.append($("<div>").addClass("col-sm-2 hour").text(date.format("h A")))
+            row.append($("<div>").addClass("col-2 hour").text(date.format("h A")))
             // event description column
             let timeBlock = date.format("hA"); // keys for data in calEvents object to populate textarea
-            row.append($("<textarea>").addClass(`col-sm-8 ${classOfHour}`).text(calEvents[timeBlock]));
+            row.append($("<textarea>").addClass(`col-8 ${classOfHour}`).text(calEvents[timeBlock]));
             // save button column
-            row.append($("<button>").addClass("col-sm-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", date.format("hA")));
+            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", date.format("hA")));
 
             // increment hour before creating next row
             date.add(1, "hour");
