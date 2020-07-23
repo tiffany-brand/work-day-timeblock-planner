@@ -2,29 +2,30 @@ $(document).ready(function () {
 
     // Selector to display today's date
     const currentDateEl = $("header #currentDay");
-    const hourDivEl = $("div.hour-div");
-    const eventDivEl = $("div.event-div");
-    const saveDivEl = $("div.save-div");
-
-    // set today's date
-    const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
 
     // declare object to store calendar events
     let calEvents = {};
 
-    // render the calendar on the page
-    function renderCalendar(date, calEvents) {
-        date = moment(date).hour(9);
-        const calendar = $("div.container");
-        // loop to make blocks for hours 9 to 5
-        for (let i = 1; i < 10; i++) {
-            const row = $("<div>").addClass("row");
-            let classOfHour = "";
+    // track when calendar was last rendered
+    let hourRendered = moment();
 
-            // set colors for time blocks
-            if (today.isBefore(date, "hour")) {
+    // render the calendar on the page
+    function renderCalendar(today, calEvents) {
+
+        let rowHr = moment(today).hour(9); // start building rows at 9 AM
+        const calendar = $("div.container"); // select the calendar div
+        calendar.empty(); // clear previously rendered time blocks from the calendar div
+
+        // loop to make rows for hours 9 to 5
+        for (let i = 1; i < 10; i++) {
+
+            const row = $("<div>").addClass("row"); // start building the row for each hour block
+
+            // set colors for time blocks for past, present and future
+            let classOfHour = "";
+            if (today.isBefore(rowHr, "hour")) {
                 classOfHour = "future"
-            } else if (today.isAfter(date, "hour")) {
+            } else if (today.isAfter(rowHr, "hour")) {
                 classOfHour = "past"
             } else {
                 classOfHour = "present"
@@ -32,21 +33,26 @@ $(document).ready(function () {
 
             calendar.append(row);
             // hour column
-            row.append($("<div>").addClass("col-2 hour").text(date.format("h A")))
+            row.append($("<div>").addClass("col-2 hour").text(rowHr.format("h A")))
             // event description column
-            let timeBlock = date.format("hA"); // keys for data in calEvents object to populate textarea
+            let timeBlock = rowHr.format("hA"); // keys for data in calEvents object to populate textarea
             row.append($("<textarea>").addClass(`col-8 ${classOfHour}`).text(calEvents[timeBlock]));
             // save button column
-            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", date.format("hA")));
+            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", rowHr.format("hA")));
 
             // increment hour before creating next row
-            date.add(1, "hour");
+            rowHr.add(1, "hour");
+
+            // set calendar render time
+            hourRendered = moment();
         }
     }
 
 
     // initialize calendar
     function initCalendar() {
+        // set today's date
+        const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
         currentDateEl.text(today.format('LL'));
         renderCalendar(today, calEvents);
     }
@@ -59,10 +65,19 @@ $(document).ready(function () {
         }
     }
 
+    // When the page loads:
+    loadCal(); // load calendar events from local storage
+    initCalendar(); // set the current date and render the calendar
+    hourTracker(); // start tracking the hour block
 
-    // load calendar events from local storage and render the calendar for today
-    loadCal();
-    initCalendar();
+    // checks current time every minute to see if color blocks for past present future need to change
+    function hourTracker() {
+        const checkHourInterval = setInterval(function () {
+            if (moment().isAfter(hourRendered, "minute")) {
+                initCalendar(); // if it's the next hour, re-render the calendar to change the colors
+            }
+        }, 60000)
+    }
 
 
     // store calendar events in local storage
@@ -71,14 +86,11 @@ $(document).ready(function () {
     };
 
 
-
-    // save calendar event
+    // Save button click handler - save calendar event 
     $("button.saveBtn").on("click", function (event) {
         let calDesc = event.currentTarget.parentElement.children[1].value;
         calEvents[event.currentTarget.id] = calDesc;
         storeCal();
     })
-
-
 
 });
