@@ -29,15 +29,15 @@ $(document).ready(function () {
                 classOfHour = "past"
             } else {
                 classOfHour = "present"
-            }
+            };
 
             calendar.append(row);
-            // hour column
-            row.append($("<div>").addClass("col-2 hour").text(rowHr.format("h A")))
-            // event description column
+            // add hour column to row
+            row.append($("<div>").addClass("col-2 hour").text(rowHr.format("h A")));
+            // add event description column to row
             let timeBlock = rowHr.format("hA"); // keys for data in calEvents object to populate textarea
             row.append($("<textarea>").addClass(`col-8 ${classOfHour}`).text(calEvents[timeBlock]));
-            // save button column
+            // add save button column to row
             row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", rowHr.format("hA")));
 
             // increment hour before creating next row
@@ -45,8 +45,8 @@ $(document).ready(function () {
 
             // set calendar render time
             hourRendered = moment();
-        }
-    }
+        };
+    };
 
 
     // initialize calendar
@@ -55,20 +55,21 @@ $(document).ready(function () {
         const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
         currentDateEl.text(today.format('LL'));
         renderCalendar(today, calEvents);
-    }
+    };
 
     // loads events from local storage
     function loadCal() {
         const storedCal = JSON.parse(localStorage.getItem("calEvents"));
         if (storedCal) {
             calEvents = storedCal;
-        }
-    }
+        };
+    };
 
     // When the page loads:
     loadCal(); // load calendar events from local storage
     initCalendar(); // set the current date and render the calendar
     hourTracker(); // start tracking the hour block
+
 
     // checks current time every minute to see if color blocks for past present future need to change
     function hourTracker() {
@@ -76,8 +77,8 @@ $(document).ready(function () {
             if (moment().isAfter(hourRendered, "minute")) {
                 initCalendar(); // if it's the next hour, re-render the calendar to change the colors
             }
-        }, 60000)
-    }
+        }, 60000);
+    };
 
 
     // store calendar events in local storage
@@ -86,11 +87,25 @@ $(document).ready(function () {
     };
 
 
+    // clear the calendar of all events
+    function clearCalendar() {
+        calEvents = {};
+        storeCal();
+        initCalendar();
+    };
+
+
+    // Clear calendar click handler
+    $("button#clear-cal").on("click", function () {
+        clearCalendar();
+    });
+
+
     // Save button click handler - save calendar event 
     $("button.saveBtn").on("click", function (event) {
-        let calDesc = event.currentTarget.parentElement.children[1].value;
-        calEvents[event.currentTarget.id] = calDesc;
-        storeCal();
-    })
+        let calDesc = event.currentTarget.parentElement.children[1].value; // store contents of that row's text area
+        calEvents[event.currentTarget.id] = calDesc; // add calendar event text to the calEvents object with the time as the key
+        storeCal(); // store the calEvents in local storage
+    });
 
 });
