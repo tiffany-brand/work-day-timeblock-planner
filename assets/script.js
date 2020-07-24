@@ -51,8 +51,7 @@ $(document).ready(function () {
 
     // initialize calendar
     function initCalendar() {
-        // set today's date
-        const today = moment(); // when testing, change this to different hours - .subtract(4, "hours"); - after testing, remove the subtract
+        const today = moment(); // set today's date
         currentDateEl.text(today.format('LL'));
         renderCalendar(today, calEvents);
     };
@@ -74,6 +73,7 @@ $(document).ready(function () {
     // checks current time every minute to see if color blocks for past present future need to change
     function hourTracker() {
         const checkHourInterval = setInterval(function () {
+            console.log("tick");
             if (moment().isAfter(hourRendered, "minute")) {
                 initCalendar(); // if it's the next hour, re-render the calendar to change the colors
             }
@@ -94,16 +94,13 @@ $(document).ready(function () {
         initCalendar();
     };
 
-
     // Clear calendar click handler
-    $("button#clear-cal").on("click", function () {
-        clearCalendar();
-    });
+    $("button#clear-cal").on("click", clearCalendar);
 
 
     // Save button click handler - save calendar event 
-    $("button.saveBtn").on("click", function (event) {
-        let calDesc = event.currentTarget.parentElement.children[1].value; // store contents of that row's text area
+    $(document).on("click", "button.saveBtn", function (event) {
+        let calDesc = event.currentTarget.parentElement.children[1].value; // store contents of that row's textarea
         calEvents[event.currentTarget.id] = calDesc; // add calendar event text to the calEvents object with the time as the key
         storeCal(); // store the calEvents in local storage
     });

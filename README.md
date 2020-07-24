@@ -1,5 +1,5 @@
 # Work Day Time Block Planner
-This project is a calendar application that allows a user to plan hourly time blocks in a day. The application displays each hourly block from 9 am to 5 pm and users can save events in each time block.
+This project is a calendar application that allows a user to plan hourly time blocks in a day. The application displays each hourly block from 9 am to 5 pm and users can save events in each time block. Hourly blocks are color coded: Gray blocks are in the past, red is the present hour, and green blocks are future hours. A clear button allows the user to clear all calendar events from the day.
 
 ## Link to Deployed Application
 
