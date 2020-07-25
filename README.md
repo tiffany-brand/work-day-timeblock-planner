@@ -34,3 +34,5 @@ THEN the saved events persist
 ```
 
 ## Screenshots
+
+![CalendarScreenShotBg](https://user-images.githubusercontent.com/16748389/88445715-8677cf80-cdf2-11ea-9f7b-ed5d021edf01.JPG)

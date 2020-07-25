@@ -4,31 +4,21 @@ body {
   line-height: 1;
 }
 
-textarea{
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
-}
+/* Header */
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
+  background-image: url(../assets/images/background.jpg);
 }
 
-.description{
-  white-space: pre-wrap;
+button#clear-cal {
+  margin-top: 10px;
 }
 
-.time-block{
-  text-align: center;
-  border-radius: 15px;
-}
+/* Time Block Elements */
 
 .row {
   white-space: pre-wrap;
@@ -45,6 +35,17 @@ textarea{
   border-top: 1px dashed #000000;
 }
 
+textarea{
+  background: transparent;
+  border: none;
+  resize: none;
+  color: #000000;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+
+/* Color coding for event blocks */
+
 .past {
   background-color: #d3d3d3;
   color: black;
@@ -59,6 +60,8 @@ textarea{
   background-color: #77dd77;
   color: black;
 }
+
+/* Save button */
 
 .saveBtn {
   font-size: 1.5em;

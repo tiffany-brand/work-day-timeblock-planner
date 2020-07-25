@@ -38,7 +38,7 @@ $(document).ready(function () {
             let timeBlock = rowHr.format("hA"); // keys for data in calEvents object to populate textarea
             row.append($("<textarea>").addClass(`col-8 ${classOfHour}`).text(calEvents[timeBlock]));
             // add save button column to row
-            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("id", rowHr.format("hA")));
+            row.append($("<button>").addClass("col-2 saveBtn").html("<i class='fas fa-save'></i>").attr("aria-label", "Save").attr("id", rowHr.format("hA")));
 
             // increment hour before creating next row
             rowHr.add(1, "hour");
