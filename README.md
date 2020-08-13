@@ -42,3 +42,4 @@ THEN the saved events persist
 
 ## License
 
+[MIT License](./LICENSE)
