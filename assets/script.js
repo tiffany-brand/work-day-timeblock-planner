@@ -73,7 +73,6 @@ $(document).ready(function () {
     // checks current time every minute to see if color blocks for past present future need to change
     function hourTracker() {
         const checkHourInterval = setInterval(function () {
-            console.log("tick");
             if (moment().isAfter(hourRendered, "minute")) {
                 initCalendar(); // if it's the next hour, re-render the calendar to change the colors
             }
