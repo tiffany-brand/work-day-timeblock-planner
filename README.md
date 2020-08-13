@@ -8,6 +8,13 @@ This project is a calendar application that allows a user to plan hourly time bl
 
 https://tiffany-brand.github.io/work-day-timeblock-planner/
 
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+- Moment JS
+
 ## Requirements
 
 ### User Story
