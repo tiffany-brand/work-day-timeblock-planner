@@ -23,8 +23,8 @@ This project is a calendar application that allows a user to plan hourly time bl
 - HTML
 - CSS
 - JavaScript
-- Bootstrap
-- Moment JS
+- Bootstrap - https://getbootstrap.com/
+- Moment JS - https://momentjs.com/ 
 
 ## Requirements
 
