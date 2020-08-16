@@ -2,13 +2,24 @@
 
 ![License](https://img.shields.io/github/license/tiffany-brand/work-day-timeblock-planner?style=plastic)
 
+## Deployed Application
+
+View the Work Day Time Block Planner at: https://tiffany-brand.github.io/work-day-timeblock-planner/
+
+## Table of Contents
+
+1. [Description](#Description)
+2. [Technologies](#technologies)
+3. [Requirements](#Requirements)
+4. [Screenshots](#Screenshots)
+5. [License](#License)
+
+## Description
+
 This project is a calendar application that allows a user to plan hourly time blocks in a day. The application displays each hourly block from 9 am to 5 pm and users can save events in each time block. Hourly blocks are color coded: Gray blocks are in the past, red is the present hour, and green blocks are future hours. A clear button allows the user to clear all calendar events from the day.
 
-## Link to Deployed Application
 
-https://tiffany-brand.github.io/work-day-timeblock-planner/
-
-## Technologies Used
+## Technologies
 - HTML
 - CSS
 - JavaScript
