@@ -12,7 +12,8 @@ View the Work Day Time Block Planner at: https://tiffany-brand.github.io/work-da
 2. [Technologies](#technologies)
 3. [Requirements](#Requirements)
 4. [Screenshots](#Screenshots)
-5. [License](#License)
+5. [Contact](#Contact)
+6. [License](#License)
 
 ## Description
 
@@ -61,6 +62,10 @@ THEN the saved events persist
 
 ### Mobile
 ![mobile-calendar](https://user-images.githubusercontent.com/16748389/90188622-d01c6000-dd89-11ea-8315-132d78ff4440.JPG)
+
+## Contact
+
+- [Tiffany Brand](https://github.com/tiffany-brand)
 
 ## License
 
